@@ -1,0 +1,39 @@
+
+
+#echo 'load catalogue service schema'
+#mongo < catalogue.js &>>$LOG_FILE
+#statuscheck $?
+#
+#echo 'load users service schema'
+#mongo < users.js &>>$LOG_FILE
+#statuscheck $?
+
+- name: setup mongodb repos
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install mongodb package
+  ansible.builtin.yum:
+    name: mongodb-org
+    state: installed
+
+- name: update mongodb listen address
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+
+- name: start mongodb service
+  ansible.builtin.systemd:
+    state: restarted
+    name: mongod
+    enabled: yes
+
+
+- name: Downloading schema files
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/mongodb/archive/main.zip
+    dest: /tmp
+    remote_src: yes
