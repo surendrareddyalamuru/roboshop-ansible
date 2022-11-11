@@ -1,13 +1,4 @@
 
-
-#echo 'load catalogue service schema'
-#mongo < catalogue.js &>>$LOG_FILE
-#statuscheck $?
-#
-#echo 'load users service schema'
-#mongo < users.js &>>$LOG_FILE
-#statuscheck $?
-
 - name: setup mongodb repos
   ansible.builtin.copy:
     src: mongo.repo
