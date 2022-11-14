@@ -1,0 +1,11 @@
+[Unit]
+Description = Cart Service
+[Service]
+User=roboshop
+Environment=redis.roboshop.internal="{{ lookup('aws_ssm', 'roboshop.dev.cart.REDIS_HOST', region='us-east-1' ) }}"
+Environment=catalogue.roboshop.internal="{{ lookup('aws_ssm', 'roboshop.dev.cart.CATALOGUE_HOST', region='us-east-1' ) }}"
+ExecStart=/bin/node /home/roboshop/cart/server.js
+SyslogIdentifier=cart
+
+[Install]
+WantedBy=multi-user.target
