@@ -108,3 +108,18 @@
     login_user: root
     login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
   when: plugins_status | regex_findall('validate_password') | length > 0
+
+- name: Downloading Schema Files
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/mysql/archive/main.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: Load Schema
+  community.mysql.mysql_db:
+    state: import
+    name: all
+    target: /tmp/mysql-main/shipping.sql
+    login_user: root
+    login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
+
