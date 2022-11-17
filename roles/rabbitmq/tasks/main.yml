@@ -5,6 +5,7 @@
   ansible.builtin.yum:
     name: "{{item}}"
     state: installed
+    disable_gpg_check: yes
   loop:
     - https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh
     - rabbitmq-server
