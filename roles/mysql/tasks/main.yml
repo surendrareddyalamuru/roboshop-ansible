@@ -68,6 +68,12 @@
     src: /var/log/mysqld.log
   register: out
 
+
+- name: Install mysqlclient pip3
+  ansible.builtin.pip:
+    name: mysqlclient
+    executable: pip3
+
 - name: Check MySQL Credentials
   community.mysql.mysql_info:
     login_user: root
