@@ -47,10 +47,15 @@
 - name: Disable mysql 8 version
   ansible.builtin.shell: dnf module disable mysql -y
 
-- name: install mysql server
+- name: Install MySQL Server Server and Python3 Dependency packages
   ansible.builtin.dnf:
-    name: mysql-community-server
+    name: "{{item}}"
     state: installed
+  loop:
+    - mysql-community-devel
+    - mysql-community-server
+    - gcc
+    - python36-devel
 
 - name: start mysql server
   ansible.builtin.systemd:
