@@ -1,7 +1,6 @@
-
-- name: install java
+- name: Install Maven
   ansible.builtin.yum:
-    name: java
+    name: maven
     state: installed
 
 - name: import app-prereq task file
