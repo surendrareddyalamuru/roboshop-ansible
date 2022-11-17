@@ -7,7 +7,7 @@
   ansible.builtin.import_tasks: app-prereq.yml
 
 - name: intall maven Dependencies
-  ansible.builtin.shell: mvn clean package && mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar
+  ansible.builtin.shell: mvn clean package && mv target/{{COMPONENT}}-1.0.jar {{COMPONENT}}.jar
   args:
     chdir: /home/roboshop/{{COMPONENT}}
   become_user: roboshop
