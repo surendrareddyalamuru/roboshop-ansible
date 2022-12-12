@@ -1,0 +1,59 @@
+- name: frontend setup
+  hosts: FRONTEND
+  become: true
+  roles:
+    - frontend
+
+- name: mongodb setup
+  hosts: MONGODB
+  become: true
+  roles:
+    - mongodb
+
+- name: catalogue setup
+  hosts: CATALOGUE
+  become: true
+  roles:
+    - catalogue
+
+- name: redis setup
+  hosts: REDIS
+  become: true
+  roles:
+    - redis
+
+- name: user setup
+  hosts: USER
+  become: true
+  roles:
+    - user
+
+- name: cart setup
+  hosts: CART
+  become: true
+  roles:
+    - cart
+
+- name: mysql setup
+  hosts: MYSQL
+  become: true
+  roles:
+    - mysql
+
+- name: shipping setup
+  hosts: SHIPPING
+  become: true
+  roles:
+    - shipping
+
+- name: rabbitmq setup
+  hosts: RABBITMQ
+  become: true
+  roles:
+    - rabbitmq
+
+- name: payment setup
+  hosts: PAYMENT
+  become: true
+  roles:
+    - payment
