@@ -1,0 +1,9 @@
+- name: Create Parameters
+  hosts: localhost
+  tasks:
+    - name: Update a Parameter
+      community.aws.aws_ssm_parameter_store:
+        name: "roboshop.dev.catalogue.MONGO_URL"
+        string_type: "String"
+        value: "xyz"
+        overwrite_value: "always"
