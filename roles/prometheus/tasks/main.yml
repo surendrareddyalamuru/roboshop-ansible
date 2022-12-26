@@ -7,3 +7,10 @@
   ansible.builtin.systemd:
     name: prometheus
     state: restarted
+
+- name: Waits for port 8000 of any IP to close active connections, don't start checking for 10 seconds
+  ansible.builtin.wait_for:
+    host: 0.0.0.0
+    port: 9090
+    delay: 10
+    timeout: 30
