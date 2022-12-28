@@ -10,8 +10,8 @@ alerting:
 
 
 rule_files:
-# - "first_rules.yml"
-
+  - "record-rules.yml"
+  - "alert-rules.yml"
 scrape_configs:
 
   - job_name: "prometheus"
