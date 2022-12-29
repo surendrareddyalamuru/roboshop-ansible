@@ -1,1 +1,4 @@
 COMPONENT: catalogue
+
+PROMETHEUS_MONITOR: yes
+RSYSLOG_CONFIG: yes
