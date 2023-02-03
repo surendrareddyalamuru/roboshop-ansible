@@ -21,17 +21,29 @@
     state: absent
 
 
-- name: Downloading nginx web content & Extracting it
+- name: Create Application Directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: directory
+
+
+- name: Downloading Application Content
   ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
-    dest: /tmp
+    src: http://{{NEXUS_USER}}:{{NEXUS_PASS}}@nexus.roboshop.internal:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
+    dest: /usr/share/nginx/html
     remote_src: yes
 
-- name: copy Extracted content
-  ansible.builtin.copy:
-    src: /tmp/frontend-main/static/
-    dest: /usr/share/nginx/html/
-    remote_src: yes
+#- name: Downloading nginx web content & Extracting it
+#  ansible.builtin.unarchive:
+#    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
+#    dest: /tmp
+#    remote_src: yes
+#
+#- name: copy Extracted content
+#  ansible.builtin.copy:
+#    src: /tmp/frontend-main/static/
+#    dest: /usr/share/nginx/html/
+#    remote_src: yes
 
 - name: Copy Nginx Service Config file
   ansible.builtin.template:
