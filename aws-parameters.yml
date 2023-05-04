@@ -35,3 +35,5 @@
         - { name: "roboshop.prod.payment.CART_HOST", value: "cart-prod.roboshop.internal" }
         - { name: "roboshop.prod.payment.AMQP_HOST", value: "rabbitmq-prod.roboshop.internal" }
         - { name: "roboshop.prod.shipping.CART_ENDPOINT", value: "cart-prod.roboshop.internal:80" }
+        - { name: "roboshop.prod.user.MONGO", value: "DOCUMENTDB=true" }
+        - { name: "roboshop.prod.catalogue.MONGO", value: "DOCUMENTDB=true" }
