@@ -5,7 +5,7 @@ Description=Payment Service
 User=root
 WorkingDirectory=/home/roboshop/payment
 
-Environment=CART_HOST="{{ lookup('aws_ssm', 'roboshop.{ENV}.payment.CART_HOST', region='us-east-1' ) }}"
+Environment=CART_HOST="{{ lookup('aws_ssm', 'roboshop.{{ENV}}.payment.CART_HOST', region='us-east-1' ) }}"
 Environment=CART_PORT=80
 Environment=USER_HOST="{{ lookup('aws_ssm', 'roboshop.{{ENV}}.payment.USER_HOST', region='us-east-1' ) }}"
 Environment=USER_PORT=80
